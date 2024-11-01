@@ -1,4 +1,4 @@
-//TestbenchAgent.groovy
+// File: TestbenchAgent.groovy
 import org.arl.unet.*
 import org.arl.unet.addr.AddressResolution
 import org.arl.unet.net.Router
@@ -6,6 +6,7 @@ import org.arl.unet.net.RouteDiscoveryProtocol
 import org.arl.unet.phy.*
 import org.arl.fjage.*
 import utilities.DepthUtility
+import utilities.CustomNodeInfo
 import org.arl.unet.sim.channels.BasicAcousticChannel
 import org.arl.unet.sim.*
 
@@ -27,104 +28,96 @@ channel = [
   waterDepth: 3020.m
 ]
 
-// Node setup functions
-setupSinkNode = { c -> 
-    c.add 'sinkNode', new SinkNode()
-    c.add 'arp', new AddressResolution()  // Adding AddressResolution service
-}
+// PHY layer configuration
+def phyConfig = [
+  frameDuration: 0.5.seconds,
+  preambleDuration: 0.1.seconds,
+  turnaroundTime: 0.1.seconds,
+  maxDataRate: 500.bps,
+  mtu: 64.bytes,
+  txPowerLevel: -10.dB
+]
 
-setupCoordinatorNode = { c ->
-    c.add 'coordinatorNode', new CoordinatorNode()
-    c.add 'arp', new AddressResolution()
-    c.add 'routing', new Router()
-    c.add 'rdp', new RouteDiscoveryProtocol()
-}
-
-setupDataNode = { c ->
-    c.add 'dataNode', new DataNode()
-    c.add 'arp', new AddressResolution()
-    c.add 'routing', new Router()
-    c.add 'rdp', new RouteDiscoveryProtocol()
-}
+// Global node address map
+def globalNodeAddressMap = [:]
 
 // Simulation logic
-simulate T, {                
-    int nodeCounter = 1
-
+simulate T, {
     // Sink node initialization
-    node "1000001", location: [0, 0, 0], web: 8080, stack: { c ->
+    def sinkNodeName = DepthUtility.generateNodeName(1, 0, 1)
+    def sinkNodeInfo = DepthUtility.parseNodeName(sinkNodeName)
+    globalNodeAddressMap[sinkNodeName] = sinkNodeInfo.address
+
+    node sinkNodeName, location: [0, 0, 0], address: sinkNodeInfo.address, web: 8080, phy: phyConfig, stack: { c ->
         def sinkNode = new SinkNode()
-        sinkNode.nodeName = "1000001"
-        sinkNode.nodeId = "1000001"
-        sinkNode.nodeAddress = Integer.parseInt(sinkNode.nodeName)  // Set address based on nodeName
+        sinkNode.nodeName = sinkNodeName
+        sinkNode.nodeId = sinkNodeName
+        sinkNode.nodeAddress = sinkNodeInfo.address
         c.add 'sinkNode', sinkNode
         c.add 'arp', new AddressResolution()
         c.add 'routing', new Router()
         c.add 'rdp', new RouteDiscoveryProtocol()
-
-        // Register this address in AddressResolution
-        def arpService = c.agentForService("org.arl.unet.addr.AddressResolution")
-        if (arpService != null) {
-            arpService.register(sinkNode.nodeName, sinkNode.nodeAddress)
-        }
     }
 
     // Configure data and coordinator nodes for each depth
     def depths = [200, 400, 600]
     depths.each { depthValue ->
-        (1..4).each { index ->
-            def dataNodeName = DepthUtility.generateNodeName(2, depthValue, index)
-            double x = Math.random() * 2000 - 1000
-            double y = Math.random() * 2000 - 1000
-
-            node dataNodeName, location: [x, y, -depthValue], web: 8080 + nodeCounter, stack: { c ->
-                def dataNode = new DataNode()
-                dataNode.nodeName = dataNodeName
-                dataNode.nodeId = dataNodeName
-                dataNode.nodeAddress = Integer.parseInt(dataNode.nodeName)  // Parse address from nodeName
-                c.add 'dataNode', dataNode
-                c.add 'arp', new AddressResolution()
-                c.add 'routing', new Router()
-                c.add 'rdp', new RouteDiscoveryProtocol()
-
-                def arpService = c.agentForService("org.arl.unet.addr.AddressResolution")
-                if (arpService != null) {
-                    arpService.register(dataNode.nodeName, dataNode.nodeAddress)
-                }
-            }
-            nodeCounter++
-        }
-
+        int depthCode = DepthUtility.DEPTH_CODES[depthValue]
         // Coordinator node for each depth
-        def coordinatorName = DepthUtility.generateNodeName(2, depthValue, 1)
+        def coordinatorIndex = 1
+        def coordinatorName = DepthUtility.generateNodeName(2, depthValue, coordinatorIndex)
+        def coordinatorInfo = DepthUtility.parseNodeName(coordinatorName)
+        globalNodeAddressMap[coordinatorName] = coordinatorInfo.address
+
         double x = Math.random() * 2000 - 1000
         double y = Math.random() * 2000 - 1000
 
-        node coordinatorName, location: [x, y, -depthValue], web: 8080 + nodeCounter, stack: { c ->
+        node coordinatorName, location: [x, y, -depthValue], address: coordinatorInfo.address, web: 8080 + coordinatorInfo.address, phy: phyConfig, stack: { c ->
             def coordinatorNode = new CoordinatorNode()
             coordinatorNode.nodeName = coordinatorName
             coordinatorNode.nodeId = coordinatorName
-            coordinatorNode.nodeAddress = Integer.parseInt(coordinatorNode.nodeName)  // Parse address from nodeName
+            coordinatorNode.nodeAddress = coordinatorInfo.address
+            coordinatorNode.depth = depthValue
             c.add 'coordinatorNode', coordinatorNode
             c.add 'arp', new AddressResolution()
             c.add 'routing', new Router()
             c.add 'rdp', new RouteDiscoveryProtocol()
+        }
 
-            def arpService = c.agentForService("org.arl.unet.addr.AddressResolution")
-            if (arpService != null) {
-                arpService.register(coordinatorNode.nodeName, coordinatorNode.nodeAddress)
+        // Data nodes at each depth
+        (2..4).each { index ->
+            def dataNodeName = DepthUtility.generateNodeName(2, depthValue, index)
+            def dataNodeInfo = DepthUtility.parseNodeName(dataNodeName)
+            globalNodeAddressMap[dataNodeName] = dataNodeInfo.address
+
+            double dx = Math.random() * 2000 - 1000
+            double dy = Math.random() * 2000 - 1000
+
+            node dataNodeName, location: [dx, dy, -depthValue], address: dataNodeInfo.address, web: 8080 + dataNodeInfo.address, phy: phyConfig, stack: { c ->
+                def dataNode = new DataNode()
+                dataNode.nodeName = dataNodeName
+                dataNode.nodeId = dataNodeName
+                dataNode.nodeAddress = dataNodeInfo.address
+                dataNode.depth = depthValue
+                c.add 'dataNode', dataNode
+                c.add 'arp', new AddressResolution()
+                c.add 'routing', new Router()
+                c.add 'rdp', new RouteDiscoveryProtocol()
             }
         }
-        nodeCounter++
     }
 
-    println "All nodes initialized with addresses based on nodeName. Simulation starting..."
-} // End of simulate block
+    // Assign the global address map to node classes
+    DataNode.globalNodeAddressMap = globalNodeAddressMap
+    CoordinatorNode.globalNodeAddressMap = globalNodeAddressMap
+    SinkNode.globalNodeAddressMap = globalNodeAddressMap
 
+    println "All nodes initialized with addresses based on the new naming scheme. Simulation starting..."
+} // End of simulate block
 
 // Final trace logging for simulation results
 println '''
 TX Count\tRX Count\tOffered Load\tThroughput
 --------\t--------\t------------\t----------'''
 println sprintf('%6d\t\t%6d\t\t%7.3f\t\t%7.3f',
-    [trace.txCount, trace.rxCount, trace.offeredLoad, trace.throughput])
+    [trace.txCount, trace.rxCount, trace.offeredLoad, trace.throughput])  

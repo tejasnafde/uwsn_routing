@@ -3,7 +3,7 @@ package utilities
 
 @groovy.transform.Canonical
 class CustomNodeInfo {
-    String nodeId           // Unique node identifier in the new 7-digit format
+    String nodeId           // Unique node identifier in the new naming format
     String initialType      // Initial type (sink or data)
     String currentRole      // Current role (sink, coordinator, data), allowing dynamic role changes
     double depth            // Node depth (0 for sink, 200, 400, 600 for regular nodes)
@@ -11,6 +11,7 @@ class CustomNodeInfo {
     double batteryLevel     // Battery level, used for reassignment decisions
     boolean isActive        // Node status (active/inactive)
     boolean isCoordinator   // Flag to indicate if the node is a coordinator
+    int address             // Node address calculated from the naming scheme
 
     /**
      * Updates the current role of the node. If it was initially a different role, we log the change.
@@ -28,6 +29,6 @@ class CustomNodeInfo {
      */
     @Override
     String toString() {
-        return "Node ID: ${nodeId}, Role: ${currentRole}, Depth: ${depth}m, Index: ${index}, Battery: ${batteryLevel}%, Active: ${isActive}, Coordinator: ${isCoordinator}"
+        return "Node ID: ${nodeId}, Role: ${currentRole}, Depth: ${depth}m, Index: ${index}, Battery: ${batteryLevel}%, Active: ${isActive}, Coordinator: ${isCoordinator}, Address: ${address}"
     }
 }

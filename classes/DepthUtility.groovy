@@ -1,3 +1,4 @@
+// File: DepthUtility.groovy
 package utilities
 
 import java.util.logging.Logger
@@ -11,81 +12,140 @@ class DepthUtility {
     static final int REGULAR_NODE_TYPE = 2
 
     // Depth levels in meters with corresponding codes
+    static final Map<Integer, Integer> DEPTH_CODES = [0: 0, 200: 1, 400: 2, 600: 3]
     static final List<Integer> ALLOWED_DEPTHS = [200, 400, 600]
+
     private static final Map<Integer, List<CustomNodeInfo>> nodesByDepth = [:].withDefault { [] }
     private static final Map<Integer, CustomNodeInfo> currentCoordinators = [:]
 
     /**
-     * Generate a 7-digit node name based on the new format:
-     * - 1 digit for type (1 for sink, 2 for regular nodes)
-     * - 3 digits for depth (e.g., 200, 400, 600)
-     * - 3 digits for index
+     * Generate node name based on the new format:
+     * "T{typeCode}D{depthCode}I{index}"
      */
-    static String generateNodeName(int type, int depth, int index) {
-        if (type != SINK_TYPE && type != REGULAR_NODE_TYPE) {
-            throw new IllegalArgumentException("Invalid node type: ${type}")
+    static String generateNodeName(int typeCode, int depth, int index) {
+        if (typeCode != SINK_TYPE && typeCode != REGULAR_NODE_TYPE) {
+            throw new IllegalArgumentException("Invalid node type: ${typeCode}")
         }
 
-        if (type == SINK_TYPE && depth != 0) {
+        if (typeCode == SINK_TYPE && depth != 0) {
             throw new IllegalArgumentException("Sink node must have depth 0")
-        } else if (type == REGULAR_NODE_TYPE && !ALLOWED_DEPTHS.contains(depth)) {
+        } else if (typeCode == REGULAR_NODE_TYPE && !ALLOWED_DEPTHS.contains(depth)) {
             throw new IllegalArgumentException("Invalid depth for regular node: ${depth}")
         }
 
-        String depthCode = String.format('%03d', depth)
-        String indexCode = String.format('%03d', index)
-        return "${type}${depthCode}${indexCode}"
-    }
-
-    /**
-     * Parse a 7-digit node name and return a CustomNodeInfo object.
-     */
-    static CustomNodeInfo parseNodeName(String nodeName) {
-        if (nodeName.length() != 7) throw new IllegalArgumentException("Invalid node name length.")
-
-        int type = nodeName[0].toInteger()
-        int depth = nodeName[1..3].toInteger()
-        int index = nodeName[4..6].toInteger()
-
-        // Validate sink depth
-        if (type == SINK_TYPE && depth != 0) {
-            throw new IllegalArgumentException("Sink node depth must be 0.")
-        } else if (type == REGULAR_NODE_TYPE && !ALLOWED_DEPTHS.contains(depth)) {
-            throw new IllegalArgumentException("Invalid depth for regular node.")
+        if (!DEPTH_CODES.containsKey(depth)) {
+            throw new IllegalArgumentException("Invalid depth: ${depth}")
         }
 
-        String initialType = (type == SINK_TYPE) ? "sink" : "data"
-        boolean isCoordinator = (index == 1) // or any logic you need to determine if it's coordinator
-        logger.info("Parsed node name '${nodeName}' into type=${initialType}, depth=${depth}, index=${index}, isCoordinator=${isCoordinator}")
-        return new CustomNodeInfo(nodeId: nodeName, initialType: initialType, currentRole: initialType, depth: depth, index: index, batteryLevel: 100.0, isActive: true, isCoordinator: isCoordinator)
+        int depthCode = DEPTH_CODES[depth]
+        return "T${typeCode}D${depthCode}I${index}"
     }
 
+    /**
+     * Parse node name and return a CustomNodeInfo object.
+     */
+    static CustomNodeInfo parseNodeName(String nodeName) {
+        def matcher = nodeName =~ /T(\d)D(\d)I(\d+)/
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("Invalid node name format: ${nodeName}")
+        }
+        int typeCode = matcher[0][1].toInteger()
+        int depthCode = matcher[0][2].toInteger()
+        int index = matcher[0][3].toInteger()
+
+        int depth = DEPTH_CODES.find { it.value == depthCode }?.key
+        if (depth == null) {
+            throw new IllegalArgumentException("Invalid depth code in node name: ${depthCode}")
+        }
+
+        String initialType = (typeCode == SINK_TYPE) ? "sink" : "data"
+        boolean isCoordinator = (index == 1) // Coordinator if index is 1
+
+        int address = computeNodeAddress(typeCode, depthCode, index)
+
+        logger.info("Parsed node name '${nodeName}' into type=${initialType}, depth=${depth}, index=${index}, isCoordinator=${isCoordinator}, address=${address}")
+        return new CustomNodeInfo(
+            nodeId: nodeName,
+            initialType: initialType,
+            currentRole: initialType,
+            depth: depth,
+            index: index,
+            batteryLevel: 100.0,
+            isActive: true,
+            isCoordinator: isCoordinator,
+            address: address
+        )
+    }
 
     /**
-     * Register a node within the system, keeping track of coordinators and nodes by depth.
+     * Compute node address based on the formula:
+     * address = (typeCode * 64) + (depthCode * 16) + index
+     */
+    static int computeNodeAddress(int typeCode, int depthCode, int index) {
+        int address = (typeCode * 64) + (depthCode * 16) + index
+        if (address < 1 || address > 255) {
+            throw new IllegalArgumentException("Computed address ${address} is out of valid range (1-255)")
+        }
+        return address
+    }
+
+    /**
+     * Helper method to extract index from nodeName.
+     */
+    static int getIndexFromNodeName(String nodeName) {
+        def matcher = nodeName =~ /T\dD\dI(\d+)/
+        if (matcher.matches()) {
+            return matcher[0][1].toInteger()
+        } else {
+            throw new IllegalArgumentException("Invalid node name format: ${nodeName}")
+        }
+    }
+
+    /**
+     * Register a node within the system, ensuring coordinators exist for each depth.
      */
     static synchronized void registerNode(CustomNodeInfo node) {
-        logger.info("Attempting to register node with ID ${node.nodeId}, type ${node.initialType}, depth ${node.depth}.")
-
-        if (node == null || (!ALLOWED_DEPTHS.contains(node.depth) && node.depth != 0)) {
+        if (node == null || (!ALLOWED_DEPTHS.contains((int) node.depth) && node.depth != 0)) {
             logger.warning("Attempted to register node with invalid depth or null: ${node}")
             return
         }
 
+        logger.info("Registering node with ID ${node.nodeId}, type ${node.initialType}, depth ${node.depth}, address ${node.address}")
+
+        int depthKey = (int) node.depth
+
         if (node.initialType == "sink") {
             node.updateRole("sink")
             node.isCoordinator = false
+            currentCoordinators[0] = node
             logger.info("Registered sink node at depth ${node.depth} with ID ${node.nodeId}")
         } else {
-            node.updateRole("data")
-            nodesByDepth[node.depth as Integer] << node
+            // Ensure the depth map is initialized
+            if (!nodesByDepth.containsKey(depthKey)) {
+                nodesByDepth[depthKey] = []
+            }
 
-            // Assign coordinator if none exists for this depth
-            if (!currentCoordinators.containsKey(node.depth)) {
-                currentCoordinators[node.depth as Integer] = node
+            // Add node to depth map if not already present
+            if (!nodesByDepth[depthKey].find { it.nodeId == node.nodeId }) {
+                nodesByDepth[depthKey] << node
+            }
+
+            // Check and assign coordinator if none exists or current has lower battery
+            if (!currentCoordinators.containsKey(depthKey) ||
+                currentCoordinators[depthKey]?.batteryLevel < node.batteryLevel) {
+
+                if (currentCoordinators[depthKey]) {
+                    currentCoordinators[depthKey].updateRole("data")
+                    currentCoordinators[depthKey].isCoordinator = false
+                }
+
                 node.updateRole("coordinator")
-                logger.info("Assigned initial coordinator at depth ${node.depth} with ID ${node.nodeId}")
+                node.isCoordinator = true
+                currentCoordinators[depthKey] = node
+                logger.info("Assigned new coordinator at depth ${node.depth} with ID ${node.nodeId}")
             } else {
+                node.updateRole("data")
+                node.isCoordinator = false
                 logger.info("Registered data node at depth ${node.depth} with ID ${node.nodeId}")
             }
         }
@@ -95,7 +155,8 @@ class DepthUtility {
      * Get the coordinator for a specific depth.
      */
     static synchronized CustomNodeInfo getCoordinatorForDepth(double depth) {
-        CustomNodeInfo coordinator = currentCoordinators[depth as Integer]
+        int depthKey = (int) depth
+        CustomNodeInfo coordinator = currentCoordinators[depthKey]
         if (coordinator == null) {
             logger.warning("No coordinator found at depth ${depth}")
         }
@@ -107,7 +168,8 @@ class DepthUtility {
      */
     static synchronized CustomNodeInfo getUpstreamCoordinator(double currentDepth) {
         List<Integer> sortedDepths = ALLOWED_DEPTHS.sort()
-        int depthIndex = sortedDepths.indexOf(currentDepth as Integer)
+        int depthKey = (int) currentDepth
+        int depthIndex = sortedDepths.indexOf(depthKey)
 
         if (depthIndex < 0) {
             logger.warning("Invalid depth specified: ${currentDepth}")
@@ -134,14 +196,18 @@ class DepthUtility {
     }
 
     /**
-     * Update battery level for a node, and reassign coordinator if needed.
+     * Update the battery level of a node.
      */
     static synchronized void updateBatteryLevel(String nodeId, double newLevel) {
         CustomNodeInfo node = findNodeById(nodeId)
         if (node) {
+            double oldLevel = node.batteryLevel
             node.batteryLevel = newLevel
-            if (node.currentRole == "coordinator") {
-                checkAndReassignCoordinator(node.depth as Integer)
+            logger.info("Updated battery level for node ${nodeId} from ${oldLevel} to ${newLevel}")
+
+            // If this is a coordinator and battery is low, check for reassignment
+            if (node.isCoordinator && newLevel < 50.0) {
+                checkAndReassignCoordinator((int) node.depth)
             }
         } else {
             logger.warning("Node with ID ${nodeId} not found for battery update.")
@@ -152,8 +218,14 @@ class DepthUtility {
      * Find a node by its ID across all depths.
      */
     private static synchronized CustomNodeInfo findNodeById(String nodeId) {
-        logger.info("Searching for node with ID: ${nodeId} across all depths.")
-        CustomNodeInfo node = nodesByDepth.values().flatten().find { it.nodeId == nodeId }
+        // First check coordinators
+        CustomNodeInfo node = currentCoordinators.values().find { it.nodeId == nodeId }
+
+        // Then check all nodes at all depths
+        if (!node) {
+            node = nodesByDepth.values().flatten().find { it.nodeId == nodeId }
+        }
+
         if (node == null) {
             logger.warning("Node with ID ${nodeId} could not be located in findNodeById.")
         } else {
@@ -165,17 +237,17 @@ class DepthUtility {
     /**
      * Reassign coordinator based on battery level if the current coordinator is low on battery.
      */
-    private static synchronized void checkAndReassignCoordinator(int depth) {
-        List<CustomNodeInfo> depthNodes = nodesByDepth[depth]
+    private static synchronized void checkAndReassignCoordinator(int depthKey) {
+        List<CustomNodeInfo> depthNodes = nodesByDepth[depthKey]
         if (!depthNodes) return
 
         CustomNodeInfo bestCandidate = depthNodes.findAll { it.isActive }.max { it.batteryLevel }
-        if (bestCandidate && bestCandidate != currentCoordinators[depth]) {
-            CustomNodeInfo previousCoordinator = currentCoordinators[depth]
+        if (bestCandidate && bestCandidate != currentCoordinators[depthKey]) {
+            CustomNodeInfo previousCoordinator = currentCoordinators[depthKey]
             if (previousCoordinator != null) previousCoordinator.updateRole("data")
             bestCandidate.updateRole("coordinator")
-            currentCoordinators[depth] = bestCandidate
-            logger.info("Coordinator reassigned at depth ${depth}m: ${bestCandidate.nodeId}")
+            currentCoordinators[depthKey] = bestCandidate
+            logger.info("Coordinator reassigned at depth ${depthKey}m: ${bestCandidate.nodeId}")
         }
     }
 
@@ -185,8 +257,12 @@ class DepthUtility {
     static synchronized Map<String, Object> getNetworkStatus() {
         return [
             nodeCount: nodesByDepth.values().flatten().size(),
-            coordinators: currentCoordinators.collect { depth, node -> [depth: depth, nodeId: node.nodeId, batteryLevel: node.batteryLevel] },
-            averageBatteryByDepth: nodesByDepth.collectEntries { depth, nodes -> [depth, nodes.sum { it.batteryLevel } / nodes.size()] }
+            coordinators: currentCoordinators.collect { depth, node ->
+                [depth: depth, nodeId: node.nodeId, batteryLevel: node.batteryLevel]
+            },
+            averageBatteryByDepth: nodesByDepth.collectEntries { depth, nodes ->
+                [depth, nodes.sum { it.batteryLevel } / nodes.size()]
+            }
         ]
     }
 }
