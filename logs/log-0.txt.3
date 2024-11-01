@@ -1,0 +1,35 @@
+1730174125891|INFO|org.arl.unet.UnetBoot@1:doInvoke|fjage Build: fjage-1.9.1/37c49259/5-09-2021_13:26:12
+1730174125948|INFO|org.arl.unet.UnetBoot@1:doInvoke|UnetBoot: [classes/TestbenchAgent.groovy]
+1730174126015|INFO|org.arl.fjage.remote.EnumTypeAdapter@1:<clinit>|Groovy detected, using GroovyClassLoader
+1730174126043|INFO|org.arl.fjage.remote.MessageAdapterFactory@1:<clinit>|Groovy detected, using GroovyClassLoader
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 38931
+1730174127006|INFO|org.arl.fjage.connectors.TcpServer@12:run|Listening on port 38931
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/1000001@1:setAddress|Node address changed to 1
+1730174127163|INFO|Script1@1:doInvoke|Starting web interface on port null:8080
+1730174127310|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730174127313|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730174127317|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730174127317|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730174127318|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730174127319|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730174127334|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730174127384|WARNING|org.arl.fjage.connectors.WebServer@1:start|java.io.IOException: Failed to bind to /127.0.0.1:8080
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8080/ws
+1730174127387|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730174127390|WARNING|org.arl.fjage.connectors.WebServer@1:start|java.io.IOException: Failed to bind to /127.0.0.1:8080
+1730174127667|WARNING|org.arl.fjage.shell.GroovyScriptEngine@1:error|Groovy execution failed
+
+groovy.lang.MissingPropertyException: No such property: nodeId for class: SinkNode
+Stack trace: ...
+   TestbenchAgent$_run_closure4$_closure5.doCall(TestbenchAgent.groovy:54) ...
+   org.arl.unet.sim.initrc$_run_closure9.doCall(initrc.groovy:370) ...
+   TestbenchAgent$_run_closure4.doCall(TestbenchAgent.groovy:51)
+   TestbenchAgent$_run_closure4.doCall(TestbenchAgent.groovy) ...
+   org.arl.unet.sim.initrc$_run_closure11.doCall(initrc.groovy:418) ...
+   TestbenchAgent.run(TestbenchAgent.groovy:47) ...
+   org.arl.fjage.shell.GroovyScriptEngine.exec(GroovyScriptEngine.java:215) ...
+   org.arl.unet.boot.sim.exec(sim.groovy:41)
+   org.arl.unet.boot.sim$exec$0.call(Unknown Source) ...
+   org.arl.unet.UnetBoot.run(UnetBoot.groovy:184) ...
+   org.arl.unet.UnetBoot.main(UnetBoot.groovy)
+

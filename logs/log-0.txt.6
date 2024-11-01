@@ -1,0 +1,40 @@
+1730174673975|INFO|org.arl.unet.UnetBoot@1:doInvoke|fjage Build: fjage-1.9.1/37c49259/5-09-2021_13:26:12
+1730174674029|INFO|org.arl.unet.UnetBoot@1:doInvoke|UnetBoot: [classes/TestbenchAgent.groovy]
+1730174674110|INFO|org.arl.fjage.remote.EnumTypeAdapter@1:<clinit>|Groovy detected, using GroovyClassLoader
+1730174674134|INFO|org.arl.fjage.remote.MessageAdapterFactory@1:<clinit>|Groovy detected, using GroovyClassLoader
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 46867
+1730174675614|INFO|org.arl.fjage.connectors.TcpServer@12:run|Listening on port 46867
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/1000001@1:setAddress|Node address changed to 1
+1730174675758|INFO|Script1@1:doInvoke|Starting web interface on port null:8080
+1730174676045|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730174676054|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730174676057|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730174676058|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730174676059|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730174676060|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730174676076|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730174676143|WARNING|org.arl.fjage.connectors.WebServer@1:start|java.io.IOException: Failed to bind to /127.0.0.1:8080
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8080/ws
+1730174676151|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730174676154|WARNING|org.arl.fjage.connectors.WebServer@1:start|java.io.IOException: Failed to bind to /127.0.0.1:8080
+1730174676549|INFO|Script1@1:doInvoke|Created static node 1000001 (1) @ [0, 0, 0]
+1730174676572|INFO|org.arl.fjage.connectors.TcpServer@26:run|Listening on port 42793
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 42793
+1730174676576|WARNING|org.arl.fjage.shell.GroovyScriptEngine@1:error|Groovy execution failed
+
+java.lang.NullPointerException
+Stack trace:
+   org.arl.unet.nodeinfo.NodeInfo.setAddress(NodeInfo.java:128) ...
+   org.arl.unet.sim.initrc$_run_closure9.doCall(initrc.groovy:297) ...
+   TestbenchAgent$_run_closure4$_closure6$_closure7.doCall(TestbenchAgent.groovy:77) ...
+   TestbenchAgent$_run_closure4$_closure6.doCall(TestbenchAgent.groovy:71) ...
+   TestbenchAgent$_run_closure4.doCall(TestbenchAgent.groovy:67)
+   TestbenchAgent$_run_closure4.doCall(TestbenchAgent.groovy) ...
+   org.arl.unet.sim.initrc$_run_closure11.doCall(initrc.groovy:418) ...
+   TestbenchAgent.run(TestbenchAgent.groovy:48) ...
+   org.arl.fjage.shell.GroovyScriptEngine.exec(GroovyScriptEngine.java:215) ...
+   org.arl.unet.boot.sim.exec(sim.groovy:41)
+   org.arl.unet.boot.sim$exec$0.call(Unknown Source) ...
+   org.arl.unet.UnetBoot.run(UnetBoot.groovy:184) ...
+   org.arl.unet.UnetBoot.main(UnetBoot.groovy)
+

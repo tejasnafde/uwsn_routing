@@ -1,0 +1,35 @@
+1730175025451|INFO|org.arl.unet.UnetBoot@1:doInvoke|fjage Build: fjage-1.9.1/37c49259/5-09-2021_13:26:12
+1730175025528|INFO|org.arl.unet.UnetBoot@1:doInvoke|UnetBoot: [classes/TestbenchAgent.groovy]
+1730175025612|INFO|org.arl.fjage.remote.EnumTypeAdapter@1:<clinit>|Groovy detected, using GroovyClassLoader
+1730175025635|INFO|org.arl.fjage.remote.MessageAdapterFactory@1:<clinit>|Groovy detected, using GroovyClassLoader
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 34727
+1730175026901|INFO|org.arl.fjage.connectors.TcpServer@12:run|Listening on port 34727
+1730175027089|INFO|Script1@1:doInvoke|Starting web interface on port null:8080
+1730175027245|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730175027251|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730175027257|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730175027258|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730175027259|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730175027263|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730175027289|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730175027447|WARNING|org.arl.fjage.connectors.WebServer@1:start|java.io.IOException: Failed to bind to /127.0.0.1:8080
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8080/ws
+1730175027457|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730175027460|WARNING|org.arl.fjage.connectors.WebServer@1:start|java.io.IOException: Failed to bind to /127.0.0.1:8080
+1730175027818|WARNING|org.arl.fjage.shell.GroovyScriptEngine@1:error|Groovy execution failed
+
+groovy.lang.MissingMethodException: No signature of method: org.arl.unet.sim.SimulationMasterContainer.agentForService() is applicable for argument types: (org.arl.unet.Services) values: [ADDRESS_RESOLUTION]
+Possible solutions: agentForService(java.lang.String), agentForService(java.lang.String), agentsForService(java.lang.String), agentsForService(java.lang.String)
+Stack trace: ...
+   TestbenchAgent$_run_closure4$_closure5.doCall(TestbenchAgent.groovy:65) ...
+   org.arl.unet.sim.initrc$_run_closure9.doCall(initrc.groovy:370) ...
+   TestbenchAgent$_run_closure4.doCall(TestbenchAgent.groovy:54)
+   TestbenchAgent$_run_closure4.doCall(TestbenchAgent.groovy) ...
+   org.arl.unet.sim.initrc$_run_closure11.doCall(initrc.groovy:418) ...
+   TestbenchAgent.run(TestbenchAgent.groovy:50) ...
+   org.arl.fjage.shell.GroovyScriptEngine.exec(GroovyScriptEngine.java:215) ...
+   org.arl.unet.boot.sim.exec(sim.groovy:41)
+   org.arl.unet.boot.sim$exec$0.call(Unknown Source) ...
+   org.arl.unet.UnetBoot.run(UnetBoot.groovy:184) ...
+   org.arl.unet.UnetBoot.main(UnetBoot.groovy)
+
