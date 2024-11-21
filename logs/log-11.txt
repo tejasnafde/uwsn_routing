@@ -1,0 +1,707 @@
+1730458041251|INFO|org.arl.unet.UnetBoot@1:doInvoke|fjage Build: fjage-1.9.1/37c49259/5-09-2021_13:26:12
+1730458041331|INFO|org.arl.unet.UnetBoot@1:doInvoke|UnetBoot: [classes/TestbenchAgent.groovy]
+1730458041436|INFO|org.arl.fjage.remote.EnumTypeAdapter@1:<clinit>|Groovy detected, using GroovyClassLoader
+1730458041466|INFO|org.arl.fjage.remote.MessageAdapterFactory@1:<clinit>|Groovy detected, using GroovyClassLoader
+1730458042554|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T1D0I1' into type=sink, depth=0, index=1, isCoordinator=true, address=65
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 33151
+1730458042581|INFO|org.arl.fjage.connectors.TcpServer@12:run|Listening on port 33151
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T1D0I1@1:setAddress|Node address changed to 65
+1730458042703|INFO|Script1@1:doInvoke|Starting web interface on port null:8080
+1730458042844|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458042848|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458042854|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458042855|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458042855|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458042856|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458042869|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458042939|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8080
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8080/ws
+1730458042946|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043201|INFO|Script1@1:doInvoke|Created static node T1D0I1 (65) @ [0, 0, 0]
+1730458043204|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D1I1' into type=data, depth=200, index=1, isCoordinator=true, address=145
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 33593
+1730458043217|INFO|org.arl.fjage.connectors.TcpServer@26:run|Listening on port 33593
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I1@1:setAddress|Node address changed to 145
+1730458043219|INFO|Script1@1:doInvoke|Starting web interface on port null:8225
+1730458043220|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043221|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043221|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043222|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043222|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043223|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043223|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043230|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8225
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8225/ws
+1730458043232|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043289|INFO|Script1@1:doInvoke|Created static node T2D1I1 (145) @ [101.86503908910595, -382.9977262103632, -200]
+1730458043296|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D1I2' into type=data, depth=200, index=2, isCoordinator=false, address=146
+1730458043298|INFO|org.arl.fjage.connectors.TcpServer@39:run|Listening on port 34377
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 34377
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I2@1:setAddress|Node address changed to 146
+1730458043300|INFO|Script1@1:doInvoke|Starting web interface on port null:8226
+1730458043301|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043302|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043303|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043304|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043305|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043305|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043306|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043312|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8226
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8226/ws
+1730458043313|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043358|INFO|Script1@1:doInvoke|Created static node T2D1I2 (146) @ [888.4032361082639, -462.9922790449576, -200]
+1730458043359|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D1I3' into type=data, depth=200, index=3, isCoordinator=false, address=147
+1730458043361|INFO|org.arl.fjage.connectors.TcpServer@52:run|Listening on port 34973
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 34973
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I3@1:setAddress|Node address changed to 147
+1730458043363|INFO|Script1@1:doInvoke|Starting web interface on port null:8227
+1730458043364|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043365|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043365|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043366|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043366|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043367|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043367|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043372|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8227
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8227/ws
+1730458043374|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043416|INFO|Script1@1:doInvoke|Created static node T2D1I3 (147) @ [-971.3475474600184, 792.8208558777535, -200]
+1730458043417|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D1I4' into type=data, depth=200, index=4, isCoordinator=false, address=148
+1730458043419|INFO|org.arl.fjage.connectors.TcpServer@65:run|Listening on port 33313
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 33313
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I4@1:setAddress|Node address changed to 148
+1730458043422|INFO|Script1@1:doInvoke|Starting web interface on port null:8228
+1730458043423|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043424|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043424|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043425|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043426|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043426|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043427|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043433|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8228
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8228/ws
+1730458043433|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043480|INFO|Script1@1:doInvoke|Created static node T2D1I4 (148) @ [402.80725724701347, 337.3417895473408, -200]
+1730458043480|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D2I1' into type=data, depth=400, index=1, isCoordinator=true, address=161
+1730458043483|INFO|org.arl.fjage.connectors.TcpServer@78:run|Listening on port 44049
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 44049
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I1@1:setAddress|Node address changed to 161
+1730458043486|INFO|Script1@1:doInvoke|Starting web interface on port null:8241
+1730458043487|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043487|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043488|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043489|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043489|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043490|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043490|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043496|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8241
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8241/ws
+1730458043498|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043546|INFO|Script1@1:doInvoke|Created static node T2D2I1 (161) @ [-290.812567229098, 747.5100939940464, -400]
+1730458043547|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D2I2' into type=data, depth=400, index=2, isCoordinator=false, address=162
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 38075
+1730458043548|INFO|org.arl.fjage.connectors.TcpServer@91:run|Listening on port 38075
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I2@1:setAddress|Node address changed to 162
+1730458043550|INFO|Script1@1:doInvoke|Starting web interface on port null:8242
+1730458043551|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043551|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043552|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043552|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043552|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043553|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043553|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043562|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8242
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8242/ws
+1730458043563|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043620|INFO|Script1@1:doInvoke|Created static node T2D2I2 (162) @ [-306.76805633282436, 676.6472740787353, -400]
+1730458043622|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D2I3' into type=data, depth=400, index=3, isCoordinator=false, address=163
+1730458043623|INFO|org.arl.fjage.connectors.TcpServer@104:run|Listening on port 45393
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 45393
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I3@1:setAddress|Node address changed to 163
+1730458043625|INFO|Script1@1:doInvoke|Starting web interface on port null:8243
+1730458043627|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043627|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043628|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043628|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043629|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043629|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043630|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043689|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8243
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8243/ws
+1730458043690|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043740|INFO|Script1@1:doInvoke|Created static node T2D2I3 (163) @ [917.6971415833814, -446.70850223900186, -400]
+1730458043740|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D2I4' into type=data, depth=400, index=4, isCoordinator=false, address=164
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 35901
+1730458043742|INFO|org.arl.fjage.connectors.TcpServer@117:run|Listening on port 35901
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I4@1:setAddress|Node address changed to 164
+1730458043744|INFO|Script1@1:doInvoke|Starting web interface on port null:8244
+1730458043745|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043745|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043746|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043746|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043746|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043747|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043747|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043751|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8244
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8244/ws
+1730458043752|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043812|INFO|Script1@1:doInvoke|Created static node T2D2I4 (164) @ [-127.67547309314216, -94.76107959173555, -400]
+1730458043812|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D3I1' into type=data, depth=600, index=1, isCoordinator=true, address=177
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 42121
+1730458043814|INFO|org.arl.fjage.connectors.TcpServer@130:run|Listening on port 42121
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I1@1:setAddress|Node address changed to 177
+1730458043816|INFO|Script1@1:doInvoke|Starting web interface on port null:8257
+1730458043817|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043818|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043821|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043822|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043823|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043824|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043825|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043833|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8257
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8257/ws
+1730458043834|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043887|INFO|Script1@1:doInvoke|Created static node T2D3I1 (177) @ [696.0148146711865, 948.4687821918467, -600]
+1730458043888|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D3I2' into type=data, depth=600, index=2, isCoordinator=false, address=178
+1730458043890|INFO|org.arl.fjage.connectors.TcpServer@143:run|Listening on port 43159
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 43159
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I2@1:setAddress|Node address changed to 178
+1730458043893|INFO|Script1@1:doInvoke|Starting web interface on port null:8258
+1730458043895|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043895|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043896|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043897|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043898|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043899|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043899|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043906|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8258
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8258/ws
+1730458043907|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043943|INFO|Script1@1:doInvoke|Created static node T2D3I2 (178) @ [-747.890270352084, 147.86783753790178, -600]
+1730458043943|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D3I3' into type=data, depth=600, index=3, isCoordinator=false, address=179
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 33679
+1730458043944|INFO|org.arl.fjage.connectors.TcpServer@156:run|Listening on port 33679
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I3@1:setAddress|Node address changed to 179
+1730458043946|INFO|Script1@1:doInvoke|Starting web interface on port null:8259
+1730458043947|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458043947|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458043947|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458043948|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458043949|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458043949|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458043950|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458043955|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8259
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8259/ws
+1730458043956|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458043996|INFO|Script1@1:doInvoke|Created static node T2D3I3 (179) @ [486.2670036635752, 824.3222479426977, -600]
+1730458043996|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T2D3I4' into type=data, depth=600, index=4, isCoordinator=false, address=180
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:openTcpServer|Listening on port 42007
+1730458043997|INFO|org.arl.fjage.connectors.TcpServer@169:run|Listening on port 42007
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I4@1:setAddress|Node address changed to 180
+1730458043999|INFO|Script1@1:doInvoke|Starting web interface on port null:8260
+1730458044000|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage
+1730458044001|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /
+1730458044002|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /logs
+1730458044003|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /scripts
+1730458044003|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /sim
+1730458044003|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /dashboards
+1730458044004|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /ws
+1730458044009|INFO|org.arl.fjage.connectors.WebServer@1:start|Started web server on port 8260
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:addConnector|Listening on ws://127.0.1.1:8260/ws
+1730458044010|INFO|org.arl.fjage.connectors.WebServer@1:add|Adding web context: /fjage/shell/ws
+1730458044047|INFO|Script1@1:doInvoke|Created static node T2D3I4 (180) @ [791.3713566045747, 451.2038471548708, -600]
+1730458044085|INFO|Script1@1:doInvoke| --- BEGIN SIMULATION #1 ---
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T1D0I1@182:init|Agent websh init
+0|INFO|SinkNode/T1D0I1@183:init|Loading agent sinkNode [SinkNode] on T1D0I1
+0|INFO|org.arl.unet.addr.AddressResolution/T1D0I1@184:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T1D0I1
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T1D0I1@187:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T1D0I1
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T1D0I1@186:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T1D0I1
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T1D0I1@185:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T1D0I1
+0|INFO|org.arl.unet.net.Router/T1D0I1@188:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T1D0I1
+0|INFO|org.arl.unet.sim.SimulationAgent/T1D0I1@189:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D1I1@191:init|Agent websh init
+0|INFO|CoordinatorNode/T2D1I1@192:init|Loading agent coordinatorNode [CoordinatorNode] on T2D1I1
+0|INFO|org.arl.unet.addr.AddressResolution/T2D1I1@194:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D1I1
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D1I1@195:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D1I1
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D1I1@196:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D1I1
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I1@197:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D1I1
+0|INFO|org.arl.unet.net.Router/T2D1I1@198:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D1I1
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D1I1@199:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D1I2@200:init|Agent websh init
+0|INFO|org.arl.unet.addr.AddressResolution/T2D1I2@201:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D1I2
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D1I2@202:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D1I2
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D1I2@204:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D1I2
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I2@205:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D1I2
+0|INFO|DataNode/T2D1I2@206:init|Loading agent dataNode [DataNode] on T2D1I2
+0|INFO|org.arl.unet.net.Router/T2D1I2@207:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D1I2
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D1I2@208:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D1I3@209:init|Agent websh init
+0|INFO|org.arl.unet.addr.AddressResolution/T2D1I3@210:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D1I3
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D1I3@211:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D1I3
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D1I3@213:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D1I3
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I3@214:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D1I3
+0|INFO|DataNode/T2D1I3@215:init|Loading agent dataNode [DataNode] on T2D1I3
+0|INFO|org.arl.unet.net.Router/T2D1I3@216:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D1I3
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D1I3@217:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D1I4@218:init|Agent websh init
+0|INFO|org.arl.unet.addr.AddressResolution/T2D1I4@219:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D1I4
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D1I4@220:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D1I4
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D1I4@222:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D1I4
+0|INFO|DataNode/T2D1I4@224:init|Loading agent dataNode [DataNode] on T2D1I4
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I4@223:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D1I4
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D1I4@226:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.net.Router/T2D1I4@225:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D1I4
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D2I1@227:init|Agent websh init
+0|INFO|CoordinatorNode/T2D2I1@228:init|Loading agent coordinatorNode [CoordinatorNode] on T2D2I1
+0|INFO|org.arl.unet.addr.AddressResolution/T2D2I1@229:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D2I1
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D2I1@231:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D2I1
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D2I1@232:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D2I1
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I1@233:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D2I1
+0|INFO|org.arl.unet.net.Router/T2D2I1@234:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D2I1
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D2I1@235:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D2I2@236:init|Agent websh init
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D2I2@238:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D2I2
+0|INFO|org.arl.unet.addr.AddressResolution/T2D2I2@237:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D2I2
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D2I2@240:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D2I2
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I2@241:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D2I2
+0|INFO|DataNode/T2D2I2@242:init|Loading agent dataNode [DataNode] on T2D2I2
+0|INFO|org.arl.unet.net.Router/T2D2I2@243:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D2I2
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D2I2@244:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D2I3@245:init|Agent websh init
+0|INFO|org.arl.unet.addr.AddressResolution/T2D2I3@246:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D2I3
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D2I3@247:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D2I3
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D2I3@249:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D2I3
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I3@250:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D2I3
+0|INFO|DataNode/T2D2I3@251:init|Loading agent dataNode [DataNode] on T2D2I3
+0|INFO|org.arl.unet.net.Router/T2D2I3@252:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D2I3
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D2I3@253:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D2I4@254:init|Agent websh init
+0|INFO|org.arl.unet.addr.AddressResolution/T2D2I4@255:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D2I4
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D2I4@257:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D2I4
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D2I4@258:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D2I4
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I4@259:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D2I4
+0|INFO|DataNode/T2D2I4@260:init|Loading agent dataNode [DataNode] on T2D2I4
+0|INFO|org.arl.unet.net.Router/T2D2I4@261:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D2I4
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D2I4@262:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D3I1@263:init|Agent websh init
+0|INFO|CoordinatorNode/T2D3I1@264:init|Loading agent coordinatorNode [CoordinatorNode] on T2D3I1
+0|INFO|org.arl.unet.addr.AddressResolution/T2D3I1@265:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D3I1
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D3I1@267:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D3I1
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D3I1@268:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D3I1
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I1@269:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D3I1
+0|INFO|org.arl.unet.net.Router/T2D3I1@270:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D3I1
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D3I1@271:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D3I2@272:init|Agent websh init
+0|INFO|org.arl.unet.addr.AddressResolution/T2D3I2@273:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D3I2
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D3I2@274:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D3I2
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D3I2@276:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D3I2
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I2@277:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D3I2
+0|INFO|DataNode/T2D3I2@278:init|Loading agent dataNode [DataNode] on T2D3I2
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D3I2@280:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.net.Router/T2D3I2@279:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D3I2
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D3I3@281:init|Agent websh init
+0|INFO|org.arl.unet.addr.AddressResolution/T2D3I3@282:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D3I3
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D3I3@283:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D3I3
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D3I3@285:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D3I3
+0|INFO|DataNode/T2D3I3@287:init|Loading agent dataNode [DataNode] on T2D3I3
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I3@286:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D3I3
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D3I3@289:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.net.Router/T2D3I3@288:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D3I3
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Initializing agents...
+0|INFO|org.arl.fjage.shell.ShellAgent/T2D3I4@290:init|Agent websh init
+0|INFO|org.arl.unet.addr.AddressResolution/T2D3I4@291:init|Loading agent arp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.addr.AddressResolution] on T2D3I4
+0|INFO|org.arl.unet.sim.HalfDuplexModem/T2D3I4@292:init|Loading agent phy v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.sim.HalfDuplexModem] on T2D3I4
+0|INFO|org.arl.unet.net.RouteDiscoveryProtocol/T2D3I4@294:init|Loading agent rdp v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.RouteDiscoveryProtocol] on T2D3I4
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I4@295:init|Loading agent node v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.nodeinfo.NodeInfo] on T2D3I4
+0|INFO|DataNode/T2D3I4@296:init|Loading agent dataNode [DataNode] on T2D3I4
+0|INFO|org.arl.unet.net.Router/T2D3I4@297:init|Loading agent routing v3.4.4/90316ecf*/19-02-2024_13:32:15 [org.arl.unet.net.Router] on T2D3I4
+0|INFO|org.arl.unet.sim.SimulationAgent/T2D3I4@298:doInvoke|Loading simulator : SimulationAgent
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:init|Agents ready...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T1D0I1@187:obtainAddress|Node name is T1D0I1, address is 65, address size is 8 bits
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|CoordinatorNode/T2D1I1@192:doInvoke|Coordinator Node startup initiated for T2D1I1
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I1@197:obtainAddress|Node name is T2D1I1, address is 145, address size is 8 bits
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I2@205:obtainAddress|Node name is T2D1I2, address is 146, address size is 8 bits
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I3@214:obtainAddress|Node name is T2D1I3, address is 147, address size is 8 bits
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|CoordinatorNode/T2D2I1@228:doInvoke|Coordinator Node startup initiated for T2D2I1
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D1I4@223:obtainAddress|Node name is T2D1I4, address is 148, address size is 8 bits
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I1@233:obtainAddress|Node name is T2D2I1, address is 161, address size is 8 bits
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I2@241:obtainAddress|Node name is T2D2I2, address is 162, address size is 8 bits
+0|INFO|DataNode/T2D2I2@242:doInvoke|Router service assigned to Data Node T2D2I2.
+0|INFO|DataNode/T2D2I4@260:doInvoke|Router service assigned to Data Node T2D2I4.
+0|INFO|DataNode/T2D2I3@251:doInvoke|Router service assigned to Data Node T2D2I3.
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I4@259:obtainAddress|Node name is T2D2I4, address is 164, address size is 8 bits
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D2I3@250:obtainAddress|Node name is T2D2I3, address is 163, address size is 8 bits
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I1@269:obtainAddress|Node name is T2D3I1, address is 177, address size is 8 bits
+0|INFO|DataNode/T2D1I2@206:doInvoke|Router service assigned to Data Node T2D1I2.
+0|INFO|CoordinatorNode/T2D3I1@264:doInvoke|Coordinator Node startup initiated for T2D3I1
+1730458046753|INFO|utilities.DepthUtility@183:doInvoke|Parsed node name 'T1D0I1' into type=sink, depth=0, index=1, isCoordinator=true, address=65
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I2@277:obtainAddress|Node name is T2D3I2, address is 178, address size is 8 bits
+0|INFO|DataNode/T2D3I2@278:doInvoke|Router service assigned to Data Node T2D3I2.
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+1730458046754|INFO|utilities.DepthUtility@183:doInvoke|Registering node with ID T1D0I1, type sink, depth 0.0, address 65
+0|INFO|DataNode/T2D3I3@287:doInvoke|Router service assigned to Data Node T2D3I3.
+0|INFO|org.arl.unet.sim.SimulationMasterContainer@1:start|Starting container...
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I4@295:obtainAddress|Node name is T2D3I4, address is 180, address size is 8 bits
+0|INFO|org.arl.unet.nodeinfo.NodeInfo/T2D3I3@286:obtainAddress|Node name is T2D3I3, address is 179, address size is 8 bits
+0|INFO|DataNode/T2D3I4@296:doInvoke|Router service assigned to Data Node T2D3I4.
+1730458046757|INFO|utilities.DepthUtility@183:doInvoke|Registered sink node at depth 0.0 with ID T1D0I1
+0|INFO|SinkNode/T1D0I1@183:doInvoke|Sink Node T1D0I1 initialized at the surface with depth 0.0 meters and address 65.
+0|INFO|DataNode/T2D1I3@215:doInvoke|Router service assigned to Data Node T2D1I3.
+0|INFO|DataNode/T2D1I4@224:doInvoke|Router service assigned to Data Node T2D1I4.
+0|SEVERE|DataNode/T2D2I4@260:run|Exception in agent: dataNode
+
+groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   DataNode.startup(DataNodeAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|DataNode/T2D1I4@224:run|Exception in agent: dataNode
+
+groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   DataNode.startup(DataNodeAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|CoordinatorNode/T2D3I1@264:run|Exception in agent: coordinatorNode
+
+groovy.lang.MissingMethodException: No signature of method: CoordinatorNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   CoordinatorNode.startup(CoordinatorAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|CoordinatorNode/T2D2I1@228:run|Exception in agent: coordinatorNode
+
+groovy.lang.MissingMethodException: No signature of method: CoordinatorNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   CoordinatorNode.startup(CoordinatorAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|DataNode/T2D3I4@296:run|Exception in agent: dataNode
+
+groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   DataNode.startup(DataNodeAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|DataNode/T2D1I2@206:run|Exception in agent: dataNode
+
+groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   DataNode.startup(DataNodeAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|DataNode/T2D3I2@278:run|Exception in agent: dataNode
+
+groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   DataNode.startup(DataNodeAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|DataNode/T2D1I3@215:run|Exception in agent: dataNode
+
+groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   DataNode.startup(DataNodeAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|DataNode/T2D2I3@251:run|Exception in agent: dataNode
+
+groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   DataNode.startup(DataNodeAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|CoordinatorNode/T2D1I1@192:run|Exception in agent: coordinatorNode
+
+groovy.lang.MissingMethodException: No signature of method: CoordinatorNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   CoordinatorNode.startup(CoordinatorAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|DataNode/T2D2I2@242:run|Exception in agent: dataNode
+
+groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   DataNode.startup(DataNodeAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|DataNode/T2D3I3@287:run|Exception in agent: dataNode
+
+groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+Stack trace: ...
+   DataNode.startup(DataNodeAgent.groovy:52)
+   org.arl.unet.UnetAgent$1.action(UnetAgent.java:45)
+   org.arl.fjage.Agent.executeBehavior(Agent.java:781)
+   org.arl.fjage.Agent.run(Agent.java:818) ...
+
+0|SEVERE|DataNode/T2D2I2@242:die|Agent dataNode died: groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|CoordinatorNode/T2D1I1@192:die|Agent coordinatorNode died: groovy.lang.MissingMethodException: No signature of method: CoordinatorNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|DataNode/T2D2I3@251:die|Agent dataNode died: groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|DataNode/T2D1I3@215:die|Agent dataNode died: groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|DataNode/T2D3I2@278:die|Agent dataNode died: groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|DataNode/T2D1I2@206:die|Agent dataNode died: groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|DataNode/T2D3I4@296:die|Agent dataNode died: groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|CoordinatorNode/T2D2I1@228:die|Agent coordinatorNode died: groovy.lang.MissingMethodException: No signature of method: CoordinatorNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|CoordinatorNode/T2D3I1@264:die|Agent coordinatorNode died: groovy.lang.MissingMethodException: No signature of method: CoordinatorNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|DataNode/T2D1I4@224:die|Agent dataNode died: groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|DataNode/T2D2I4@260:die|Agent dataNode died: groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+0|SEVERE|DataNode/T2D3I3@287:die|Agent dataNode died: groovy.lang.MissingMethodException: No signature of method: DataNode.bind() is applicable for argument types: (Integer) values: [32]
+	Possible solutions: find(), find(groovy.lang.Closure), send(org.arl.fjage.Message), run(), any(), add(org.arl.fjage.Behavior)
+7200000|INFO|Script1@299:call|Stopping simulation...
+1730458047016|INFO|Script1@299:doInvoke| --- END SIMULATION #1 ---
+1730458047017|INFO|org.arl.fjage.connectors.WebServer@312:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:connectionClosed|Connection ws://127.0.1.1:8080/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|Initiating shutdown...
+1730458047019|INFO|org.arl.fjage.connectors.TcpServer@12:run|Stopped listening
+7200000|INFO|SinkNode/T1D0I1@183:doInvoke|Sink Node T1D0I1 shutting down with final battery=100.0%.
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T1D0I1@182:shutdown|Agent websh shutdown
+1730458047021|INFO|org.arl.fjage.connectors.WebServer@182:remove|Removing web context: /fjage/shell/ws
+1730458047021|INFO|org.arl.fjage.connectors.WebServer@182:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|All agents have shutdown
+1730458047042|INFO|org.arl.fjage.connectors.WebServer@312:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:connectionClosed|Connection ws://127.0.1.1:8225/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D1I1@191:shutdown|Agent websh shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@313:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@314:shutdown|Initiating shutdown...
+1730458047043|INFO|org.arl.fjage.connectors.TcpServer@26:run|Stopped listening
+1730458047045|INFO|org.arl.fjage.connectors.WebServer@191:remove|Removing web context: /fjage/shell/ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@315:shutdown|Initiating shutdown...
+1730458047048|INFO|org.arl.fjage.connectors.WebServer@191:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|All agents have shutdown
+1730458047054|INFO|org.arl.fjage.connectors.WebServer@312:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:connectionClosed|Connection ws://127.0.1.1:8226/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@316:shutdown|Initiating shutdown...
+1730458047057|INFO|org.arl.fjage.connectors.TcpServer@39:run|Stopped listening
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D1I2@200:shutdown|Agent websh shutdown
+1730458047058|INFO|org.arl.fjage.connectors.WebServer@200:remove|Removing web context: /fjage/shell/ws
+1730458047058|INFO|org.arl.fjage.connectors.WebServer@200:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@317:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@318:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|All agents have shutdown
+1730458047065|INFO|org.arl.fjage.connectors.WebServer@312:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:connectionClosed|Connection ws://127.0.1.1:8227/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D1I3@209:shutdown|Agent websh shutdown
+1730458047066|INFO|org.arl.fjage.connectors.WebServer@209:remove|Removing web context: /fjage/shell/ws
+1730458047066|INFO|org.arl.fjage.connectors.WebServer@209:stop|Stopping web server
+1730458047067|INFO|org.arl.fjage.connectors.TcpServer@52:run|Stopped listening
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@319:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|All agents have shutdown
+1730458047074|INFO|org.arl.fjage.connectors.WebServer@312:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:connectionClosed|Connection ws://127.0.1.1:8228/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D1I4@218:shutdown|Agent websh shutdown
+1730458047075|INFO|org.arl.fjage.connectors.WebServer@218:remove|Removing web context: /fjage/shell/ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@320:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@321:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@322:shutdown|Initiating shutdown...
+1730458047079|INFO|org.arl.fjage.connectors.WebServer@218:stop|Stopping web server
+1730458047079|INFO|org.arl.fjage.connectors.TcpServer@65:run|Stopped listening
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|All agents have shutdown
+1730458047086|INFO|org.arl.fjage.connectors.WebServer@312:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:connectionClosed|Connection ws://127.0.1.1:8241/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D2I1@227:shutdown|Agent websh shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@323:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@324:shutdown|Initiating shutdown...
+1730458047090|INFO|org.arl.fjage.connectors.TcpServer@78:run|Stopped listening
+1730458047098|INFO|org.arl.fjage.connectors.WebServer@227:remove|Removing web context: /fjage/shell/ws
+1730458047098|INFO|org.arl.fjage.connectors.WebServer@227:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|All agents have shutdown
+1730458047103|INFO|org.arl.fjage.connectors.WebServer@312:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:connectionClosed|Connection ws://127.0.1.1:8242/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D2I2@236:shutdown|Agent websh shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@325:shutdown|Initiating shutdown...
+1730458047105|INFO|org.arl.fjage.connectors.TcpServer@91:run|Stopped listening
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@326:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@327:shutdown|Initiating shutdown...
+1730458047107|INFO|org.arl.fjage.connectors.WebServer@236:remove|Removing web context: /fjage/shell/ws
+1730458047108|INFO|org.arl.fjage.connectors.WebServer@236:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|All agents have shutdown
+1730458047113|INFO|org.arl.fjage.connectors.WebServer@312:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:connectionClosed|Connection ws://127.0.1.1:8243/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@328:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@330:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D2I3@245:shutdown|Agent websh shutdown
+1730458047114|INFO|org.arl.fjage.connectors.TcpServer@104:run|Stopped listening
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@331:shutdown|Initiating shutdown...
+1730458047115|INFO|org.arl.fjage.connectors.WebServer@245:remove|Removing web context: /fjage/shell/ws
+1730458047116|INFO|org.arl.fjage.connectors.WebServer@245:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|All agents have shutdown
+1730458047119|INFO|org.arl.fjage.connectors.WebServer@329:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:connectionClosed|Connection ws://127.0.1.1:8244/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|Initiating shutdown...
+1730458047120|INFO|org.arl.fjage.connectors.TcpServer@117:run|Stopped listening
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D2I4@254:shutdown|Agent websh shutdown
+1730458047120|INFO|org.arl.fjage.connectors.WebServer@254:remove|Removing web context: /fjage/shell/ws
+1730458047124|INFO|org.arl.fjage.connectors.WebServer@254:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@333:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@332:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|All agents have shutdown
+1730458047128|INFO|org.arl.fjage.connectors.WebServer@329:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:connectionClosed|Connection ws://127.0.1.1:8257/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@334:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D3I1@263:shutdown|Agent websh shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@335:shutdown|Initiating shutdown...
+1730458047129|INFO|org.arl.fjage.connectors.TcpServer@130:run|Stopped listening
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@336:shutdown|Initiating shutdown...
+1730458047130|INFO|org.arl.fjage.connectors.WebServer@263:remove|Removing web context: /fjage/shell/ws
+1730458047132|INFO|org.arl.fjage.connectors.WebServer@263:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|All agents have shutdown
+1730458047135|INFO|org.arl.fjage.connectors.WebServer@329:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:connectionClosed|Connection ws://127.0.1.1:8258/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|Initiating shutdown...
+1730458047136|INFO|org.arl.fjage.connectors.TcpServer@143:run|Stopped listening
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D3I2@272:shutdown|Agent websh shutdown
+1730458047137|INFO|org.arl.fjage.connectors.WebServer@272:remove|Removing web context: /fjage/shell/ws
+1730458047138|INFO|org.arl.fjage.connectors.WebServer@272:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@337:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|All agents have shutdown
+1730458047143|INFO|org.arl.fjage.connectors.WebServer@329:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:connectionClosed|Connection ws://127.0.1.1:8259/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@313:shutdown|All agents have shutdown
+1730458047144|INFO|org.arl.fjage.connectors.TcpServer@156:run|Stopped listening
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@314:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@314:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@313:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D3I3@281:shutdown|Agent websh shutdown
+1730458047146|INFO|org.arl.fjage.connectors.WebServer@281:remove|Removing web context: /fjage/shell/ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@315:shutdown|All agents have shutdown
+1730458047149|INFO|org.arl.fjage.connectors.WebServer@281:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@338:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@339:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@315:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|All agents have shutdown
+1730458047152|INFO|org.arl.fjage.connectors.WebServer@329:remove|Removing web context: /ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:connectionClosed|Connection ws://127.0.1.1:8260/ws closed
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@341:shutdown|Initiating shutdown...
+1730458047152|INFO|org.arl.fjage.connectors.TcpServer@169:run|Stopped listening
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@340:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.fjage.shell.ShellAgent/T2D3I4@290:shutdown|Agent websh shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@342:shutdown|Initiating shutdown...
+1730458047154|INFO|org.arl.fjage.connectors.WebServer@290:remove|Removing web context: /fjage/shell/ws
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@343:shutdown|Initiating shutdown...
+1730458047154|INFO|org.arl.fjage.connectors.WebServer@290:stop|Stopping web server
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@344:shutdown|Initiating shutdown...
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@341:shutdown|All agents have shutdown
+7200000|INFO|org.arl.fjage.DiscreteEventSimulator@299:run|Simulator shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@316:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@317:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@318:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@319:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@320:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@321:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@322:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@323:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@324:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@325:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@326:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@327:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@312:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@328:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@330:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@331:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@333:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@332:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@334:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@335:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@336:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@337:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@313:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@314:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@338:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@339:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@315:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@340:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@342:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@329:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@343:shutdown|All agents have shutdown
+7200000|INFO|org.arl.unet.sim.SimulationMasterContainer@344:shutdown|All agents have shutdown

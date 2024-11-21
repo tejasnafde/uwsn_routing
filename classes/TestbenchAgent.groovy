@@ -1,123 +1,43 @@
-// File: TestbenchAgent.groovy
-import org.arl.unet.*
+//TestbenchAgent.groovy
 import org.arl.unet.addr.AddressResolution
-import org.arl.unet.net.Router
-import org.arl.unet.net.RouteDiscoveryProtocol
-import org.arl.unet.phy.*
 import org.arl.fjage.*
-import utilities.DepthUtility
-import utilities.CustomNodeInfo
-import org.arl.unet.sim.channels.BasicAcousticChannel
+import org.arl.unet.*
+import org.arl.unet.phy.*
 import org.arl.unet.sim.*
+import org.arl.unet.sim.channels.*
 
-// Define the simulation duration (e.g., 2 hours in accelerated time)
-def T = 2.hours
+int countNodesPerLvl = 3
+int numberOfLvl = 5
+int depthBase = 100
+int levelDepthData = 1100
+int radius = 200
 
-// Set a warm-up period to allow conditions to stabilize before collecting stats
-trace.warmup = 15.minutes
+int countNodes = countNodesPerLvl * numberOfLvl + 1
+def nodes = 1..countNodes
+def T = 10.hours
 
-// Acoustic channel configuration
-channel = [
-  model: BasicAcousticChannel,
-  carrierFrequency: 25.kHz,
-  bandwidth: 4096.Hz,
-  spreading: 2,
-  temperature: 25.C,
-  salinity: 35.ppt,
-  noiseLevel: 73.dB,
-  waterDepth: 3020.m
-]
+def loc = new LocationGen()
+def nodeLocation = loc.generate(countNodes, numberOfLvl, radius, depthBase, levelDepthData);
 
-// PHY layer configuration
-def phyConfig = [
-  frameDuration: 0.5.seconds,
-  preambleDuration: 0.1.seconds,
-  turnaroundTime: 0.1.seconds,
-  maxDataRate: 500.bps,
-  mtu: 64.bytes,
-  txPowerLevel: -10.dB
-]
+channel.model = ProtocolChannelModel
 
-// Global node address map
-def globalNodeAddressMap = [:]
+modem.headerLength = 0
+modem.preambleDuration = 0
+modem.txDelay = 0
 
-// Simulation logic
+setup1 = { c ->
+  c.add 'echo', new BaseNode()
+  c.add 'arp', new AddressResolution()
+}
+
 simulate T, {
-    // Sink node initialization
-    def sinkNodeName = DepthUtility.generateNodeName(1, 0, 1)
-    def sinkNodeInfo = DepthUtility.parseNodeName(sinkNodeName)
-    globalNodeAddressMap[sinkNodeName] = sinkNodeInfo.address
-
-    node sinkNodeName, location: [0, 0, 0], address: sinkNodeInfo.address, web: 8080, phy: phyConfig, stack: { c ->
-        def sinkNode = new SinkNode()
-        sinkNode.nodeName = sinkNodeName
-        sinkNode.nodeId = sinkNodeName
-        sinkNode.nodeAddress = sinkNodeInfo.address
-        c.add 'sinkNode', sinkNode
+  nodes.each{n ->
+    if(n==1)
+      node "N", address:n, location: nodeLocation[n], web:8080+n, stack:setup1
+    else
+      node "N"+(n-1), address:n, location: nodeLocation[n], web:8080+n, stack:{ c ->
+        c.add 'echo', new DataNode(AgentLocalRandom.current().nextDouble(95,100))
         c.add 'arp', new AddressResolution()
-        c.add 'routing', new Router()
-        c.add 'rdp', new RouteDiscoveryProtocol()
-    }
-
-    // Configure data and coordinator nodes for each depth
-    def depths = [200, 400, 600]
-    depths.each { depthValue ->
-        int depthCode = DepthUtility.DEPTH_CODES[depthValue]
-        // Coordinator node for each depth
-        def coordinatorIndex = 1
-        def coordinatorName = DepthUtility.generateNodeName(2, depthValue, coordinatorIndex)
-        def coordinatorInfo = DepthUtility.parseNodeName(coordinatorName)
-        globalNodeAddressMap[coordinatorName] = coordinatorInfo.address
-
-        double x = Math.random() * 2000 - 1000
-        double y = Math.random() * 2000 - 1000
-
-        node coordinatorName, location: [x, y, -depthValue], address: coordinatorInfo.address, web: 8080 + coordinatorInfo.address, phy: phyConfig, stack: { c ->
-            def coordinatorNode = new CoordinatorNode()
-            coordinatorNode.nodeName = coordinatorName
-            coordinatorNode.nodeId = coordinatorName
-            coordinatorNode.nodeAddress = coordinatorInfo.address
-            coordinatorNode.depth = depthValue
-            c.add 'coordinatorNode', coordinatorNode
-            c.add 'arp', new AddressResolution()
-            c.add 'routing', new Router()
-            c.add 'rdp', new RouteDiscoveryProtocol()
-        }
-
-        // Data nodes at each depth
-        (2..4).each { index ->
-            def dataNodeName = DepthUtility.generateNodeName(2, depthValue, index)
-            def dataNodeInfo = DepthUtility.parseNodeName(dataNodeName)
-            globalNodeAddressMap[dataNodeName] = dataNodeInfo.address
-
-            double dx = Math.random() * 2000 - 1000
-            double dy = Math.random() * 2000 - 1000
-
-            node dataNodeName, location: [dx, dy, -depthValue], address: dataNodeInfo.address, web: 8080 + dataNodeInfo.address, phy: phyConfig, stack: { c ->
-                def dataNode = new DataNode()
-                dataNode.nodeName = dataNodeName
-                dataNode.nodeId = dataNodeName
-                dataNode.nodeAddress = dataNodeInfo.address
-                dataNode.depth = depthValue
-                c.add 'dataNode', dataNode
-                c.add 'arp', new AddressResolution()
-                c.add 'routing', new Router()
-                c.add 'rdp', new RouteDiscoveryProtocol()
-            }
-        }
-    }
-
-    // Assign the global address map to node classes
-    DataNode.globalNodeAddressMap = globalNodeAddressMap
-    CoordinatorNode.globalNodeAddressMap = globalNodeAddressMap
-    SinkNode.globalNodeAddressMap = globalNodeAddressMap
-
-    println "All nodes initialized with addresses based on the new naming scheme. Simulation starting..."
-} // End of simulate block
-
-// Final trace logging for simulation results
-println '''
-TX Count\tRX Count\tOffered Load\tThroughput
---------\t--------\t------------\t----------'''
-println sprintf('%6d\t\t%6d\t\t%7.3f\t\t%7.3f',
-    [trace.txCount, trace.rxCount, trace.offeredLoad, trace.throughput])  
+      }
+  }
+}

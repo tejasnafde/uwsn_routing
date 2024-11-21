@@ -1,248 +1,227 @@
-// File: DataNodeAgent.groovy
-import org.arl.unet.*
-import org.arl.unet.Services.*
-import org.arl.fjage.*
-import utilities.DepthUtility
-import utilities.CustomNodeInfo
-import org.arl.unet.net.Router
-import org.arl.unet.RefuseRsp
-import org.arl.unet.DatagramReq
-import org.arl.unet.DatagramNtf
-import java.util.concurrent.ThreadLocalRandom  // Import for randomization
+//DataNodeAgent.groovy
+import org.arl.fjage.*;
+import org.arl.unet.*;
+import org.arl.fjage.param.Parameter;
+import org.arl.fjage.WakerBehavior;
+import org.arl.unet.phy.*;
 
 class DataNode extends UnetAgent {
-    String nodeName
-    String nodeId
-    int nodeAddress
-    double depth
-    CustomNodeInfo currentCoordinator
-    AgentID phy
-    AgentID router
-    double batteryCharge = 100.0
-    int hopCount = 99  // Initialize to a high value
-    final double TX_BATTERY_COST = 0.2
-    final double RX_BATTERY_COST = 0.1
-    final double BEACON_BATTERY_COST = 0.05
-    final double CRITICAL_BATTERY = 15.0
-    final long DATA_INTERVAL = 60000
-    final long BEACON_INTERVAL = 30000
-    final int MAX_RETRIES = 10
-    final int RETRY_DELAY_MS = 5000
-    static Map<String, Integer> globalNodeAddressMap  // Global map of node names to addresses
 
-    @Override
-    void startup() {
-        if (!validateInitialization()) return
+  final String title = 'Data Node';
+  final String description = 'Serves as data collection nodes in the network';
 
-        register(Services.DATAGRAM)
-        phy = agentForService(Services.PHYSICAL)
-        router = agentForService(Services.ROUTING)
-        if (router == null) {
-            log.severe "Router service not available for Data Node ${nodeName}. Shutting down."
-            shutdown()
-            return
-        } else {
-            log.info "Router service assigned to Data Node ${nodeName}."
+  final double rxBttryUsage = 0.1;
+  final double txSameLvlBttryUsage = 0.2;
+  final double txDiffLvlBttryUsage = 0.5;
+  final double critBttryLvl = 5;
+
+  enum DataParams implements Parameter {
+    tdmaSlot,
+    delayLength
+  }
+
+  class Protocols {
+    final static int INIT = 32;
+    final static int ACK = 33;
+    final static int BASE = 34;
+    final static int RELAY = 35;
+    final static int CORRECTION = 36;
+  }
+
+  PDU init = PDU.withFormat {
+    int16('address');
+    uint16('delayLength');
+    int16('depth');
+  };
+
+  PDU ack = PDU.withFormat {
+    int16('address');
+    uint32('battery');
+  };
+
+  PDU correction = PDU.withFormat {
+    int16('address');
+  };
+
+  int delayLength = 0;
+  int baseAddress = -1;
+  int localBaseAddress = -1;
+  boolean subBaseNode = false;
+
+  AgentID phy;
+  AgentID node;
+  AgentLocalRandom rnd;
+
+  TreeMap neighbours;
+  double bttryLvl;
+
+  DataNode(double bttryLvl)
+  {
+    this.bttryLvl = bttryLvl
+  }
+
+  @Override
+  void startup() {
+    rnd = AgentLocalRandom.current();
+    subscribeForService Services.DATAGRAM;
+    phy = agentForService Services.PHYSICAL;
+    node = agentForService Services.NODE_INFO;
+    subscribe(topic(phy));
+
+    // add new TickerBehavior(600000, {
+    
+    //   if(baseAddress != -1)
+    //   {
+    //     phy << new ClearReq();
+    //     phy << new DatagramReq(
+    //       to: baseAddress,
+    //       protocol: Protocols.RELAY
+    //     );
+    //   }
+
+    // });
+  }
+
+  @Override
+  void processMessage(Message msg) {
+    if (bttryLvl > critBttryLvl)
+    {
+      if (msg instanceof DatagramNtf && msg.protocol == Protocols.INIT) {
+        bttryLvl -= rxBttryUsage;
+
+        def bytes = init.decode(msg.data);
+        delayLength = bytes.delayLength;
+        long backoff = rnd.nextDouble(0, delayLength - 5000);
+        
+        if(bytes.depth >= node.location[2])
+          subBaseNode = false;
+        
+        if(bytes.depth > node.location[2])
+        {
+          baseAddress = bytes.address;
+
+          add new WakerBehavior(backoff, {
+            bttryLvl -= txDiffLvlBttryUsage;
+            bytes = ack.encode(address:node.address, battery:bttryLvl*10000);
+
+            phy << new ClearReq();
+            phy << new DatagramReq(
+              recipient: msg.sender,
+              to: msg.from,
+              protocol: Protocols.ACK,
+              data: bytes
+            );
+          });
         }
+      }
+      else if (msg instanceof DatagramNtf && msg.protocol == Protocols.BASE && msg.to == node.address) {
+        bttryLvl -= rxBttryUsage;
+        
+        subBaseNode = true;
+        neighbourBroadcast();
+        log.info("Acting as Sub Base Node for Base Address: " + baseAddress);
+      }
+      else if (msg instanceof DatagramNtf && msg.protocol == Protocols.BASE && msg.to != node.address) {
+        bttryLvl -= rxBttryUsage;
+        
+        subBaseNode = false;
+        localBaseAddress = msg.to;
+      }
+      else if (msg instanceof DatagramNtf && msg.protocol == Protocols.ACK && msg.to == node.address) {
+        bttryLvl -= rxBttryUsage;
+        
+        def bytes = ack.decode(msg.data);
+        neighbours.put(bytes.battery/10000, bytes.address);
+      }
+      else if (msg instanceof DatagramNtf && msg.protocol == Protocols.RELAY && msg.to == node.address && subBaseNode) {
+        bttryLvl -= rxBttryUsage;
+        log.info("Relaying data to Base Node: " + baseAddress);
+        
+        //log.info("Relayed to Node:"+baseAddress)
+        
+        add new OneShotBehavior({
+            bttryLvl -= txDiffLvlBttryUsage;
 
-        subscribeForService(Services.DATAGRAM)
-        subscribe(topic(phy))
+            phy << new ClearReq();
+            phy << new DatagramReq(
+              to: baseAddress,
+              protocol: Protocols.RELAY
+            );
+        });
+      }
 
-        // Register the node in DepthUtility
-        CustomNodeInfo nodeInfo = new CustomNodeInfo(
-            nodeId: nodeId,
-            initialType: "data",
-            currentRole: "data",
-            depth: depth,
-            index: DepthUtility.getIndexFromNodeName(nodeName),
-            batteryLevel: batteryCharge,
-            isActive: true,
-            isCoordinator: false,
-            address: nodeAddress
-        )
-        DepthUtility.registerNode(nodeInfo)
+      else if (msg instanceof DatagramNtf && msg.protocol == Protocols.RELAY && msg.to == node.address && !subBaseNode) {
+        // Handle re-routing when voids are detected
+        log.warning("Rerouting required! Sub Base Node unavailable.");
+      }
+      // else if (msg instanceof DatagramNtf && msg.protocol == Protocols.RELAY && msg.to == node.address && !subBaseNode) {
+      //   bttryLvl -= rxBttryUsage;
+        
+      //   log.info("Corrected info for Node:"+msg.from)
+        
+      //   add new OneShotBehavior({
+      //       bttryLvl -= txDiffLvlBttryUsage;
 
-        currentCoordinator = DepthUtility.getCoordinatorForDepth(depth)
-        logCoordinatorStatus("on startup")
+      //       def bytes = correction.encode(address:localBaseAddress);
 
-        // Beaconing Behavior with random initial delay
-        long initialBeaconDelay = ThreadLocalRandom.current().nextLong(0, BEACON_INTERVAL)
-        add new WakerBehavior(initialBeaconDelay) {
-            @Override
-            void onWake() {
-                add new TickerBehavior(BEACON_INTERVAL) {
-                    @Override
-                    void onTick() {
-                        sendBeacon()
-                        updateBattery(BEACON_BATTERY_COST)
-                    }
-                }
-            }
-        }
-
-        // Data Sending Behavior with random initial delay
-        long initialDataDelay = ThreadLocalRandom.current().nextLong(0, DATA_INTERVAL)
-        add new WakerBehavior(initialDataDelay) {
-            @Override
-            void onWake() {
-                add new TickerBehavior(DATA_INTERVAL) {
-                    @Override
-                    void onTick() {
-                        if (batteryCharge > CRITICAL_BATTERY) {
-                            currentCoordinator = DepthUtility.getCoordinatorForDepth(depth)
-                            sendDataToCoordinator()
-                            updateBattery(TX_BATTERY_COST)
-                        }
-                    }
-                }
-            }
-        }
-
-        log.info "Data Node ${nodeName} initialized at depth ${depth}m with address ${nodeAddress} and battery ${batteryCharge}%."
+      //       phy << new ClearReq();
+      //       phy << new DatagramReq(
+      //         to: msg.from,
+      //         protocol: Protocols.CORRECTION,
+      //         data: bytes
+      //       );
+      //   });
+      // }
+      // else if(msg instanceof DatagramNtf && msg.protocol == Protocols.CORRECTION && msg.to == node.address)
+      // {
+      //   def bytes = correction.decode(msg.data);
+      //   baseAddress = bytes.address;
+      // }
     }
+  }
 
-    private boolean validateInitialization() {
-        if (!nodeName || nodeAddress == null || depth == null) {
-            log.severe "Data Node's nodeName, nodeAddress, or depth is not set. Initialization aborted."
-            shutdown()
-            return false
-        }
-        return true
-    }
+  void neighbourBroadcast() {
+    neighbours = new TreeMap<Double, Integer>(Collections.reverseOrder());
+    def bytes = init.encode(address:node.address, delayLength:delayLength, depth:node.location[2]);
+    add new OneShotBehavior({
+      bttryLvl -= txDiffLvlBttryUsage;
 
-    private void sendDataToCoordinator() {
-        if (router && currentCoordinator) {
-            try {
-                // Get the coordinator's address from currentCoordinator.address
-                def coordinatorAddress = currentCoordinator.address
-                if (coordinatorAddress == null) {
-                    log.warning "Coordinator address for ${currentCoordinator.nodeId} not found."
-                    return
-                }
-                long sendTimestamp = System.currentTimeMillis()
-                String formattedData = "${nodeName}|${sendTimestamp}|${depth}|SAMPLE_DATA"
-                def data = formattedData.bytes
+      phy << new ClearReq();
+      phy << new DatagramReq(
+        protocol: Protocols.INIT,
+        data: bytes
+      );
+    });
 
-                log.info "Sending data at ${sendTimestamp}: ${formattedData} to coordinator ${currentCoordinator.nodeId} (Address: ${coordinatorAddress})"
+    add new WakerBehavior(delayLength, {
+      bttryLvl -= txDiffLvlBttryUsage;
 
-                def req = new DatagramReq(to: coordinatorAddress, data: data)
-                req.reliability = true
+      if(!neighbours.isEmpty())
+      {
+        log.info(String.valueOf(neighbours));
+        log.info(String.valueOf(neighbours.get(neighbours.firstKey())))
 
-                // Use request-response pattern to handle RefuseRsp
-                int retries = 0
-                boolean success = false
-                while (retries < MAX_RETRIES && !success) {
-                    def rsp = request(req, 5000)  // Wait up to 5 seconds for a response
-                    if (rsp instanceof RefuseRsp) {
-                        retries++
-                        log.warning "Data transmission refused by router. Retrying in ${RETRY_DELAY_MS} ms... (Attempt ${retries}/${MAX_RETRIES})"
-                        sleep(RETRY_DELAY_MS)
-                    } else {
-                        success = true
-                        log.info "Data successfully sent to coordinator."
-                    }
-                }
-                if (!success) {
-                    log.severe "Failed to send data after ${MAX_RETRIES} retries."
-                }
-            } catch (Exception e) {
-                log.severe "Data formatting/sending error: ${e.message}"
-                e.printStackTrace()
-            }
-        } else {
-            log.warning "No coordinator available at depth ${depth}"
-        }
-    }
+        add new OneShotBehavior({
+          phy << new ClearReq();
+          phy << new DatagramReq(
+            to: neighbours.get(neighbours.firstKey()),
+            protocol: Protocols.BASE,
+          );
+        });
+      }
+      else{
+        add new OneShotBehavior({
+          phy << new ClearReq();
+          phy << new DatagramReq(
+            to: baseAddress,
+            protocol: Protocols.RELAY,
+          );
+        });
+      }
+    });
+  }
 
-    private void sendBeacon() {
-        def beaconData = [nodeName: nodeName, depth: depth, hopCount: hopCount, batteryCharge: batteryCharge]
-        def beaconBytes = beaconData.toString().bytes
-        def req = new DatagramReq(to: Address.BROADCAST, data: beaconBytes)
-
-        // Use request-response pattern to handle RefuseRsp
-        int retries = 0
-        boolean success = false
-        while (retries < MAX_RETRIES && !success) {
-            def rsp = request(req, 5000)  // Wait up to 5 seconds for a response
-            if (rsp instanceof RefuseRsp) {
-                retries++
-                log.warning "Beacon transmission refused by phy. Retrying in ${RETRY_DELAY_MS} ms... (Attempt ${retries}/${MAX_RETRIES})"
-                sleep(RETRY_DELAY_MS)
-            } else {
-                success = true
-                log.info "Data Node ${nodeName} broadcasted beacon."
-            }
-        }
-        if (!success) {
-            log.severe "Failed to send beacon after ${MAX_RETRIES} retries."
-        }
-    }
-
-    private void updateBattery(double cost) {
-        batteryCharge = Math.max(0, batteryCharge - cost)
-        DepthUtility.updateBatteryLevel(nodeName, batteryCharge)
-
-        if (batteryCharge <= CRITICAL_BATTERY) {
-            log.warning "Data Node ${nodeName} at critical battery: ${batteryCharge}%."
-            currentCoordinator = DepthUtility.getCoordinatorForDepth(depth)
-            logCoordinatorStatus("at critical battery level")
-        }
-    }
-
-    private void logCoordinatorStatus(String context) {
-        if (currentCoordinator) {
-            log.info "Data Node ${nodeName} found coordinator ${currentCoordinator.nodeId} at depth ${depth} ${context}."
-        } else {
-            log.warning "Data Node ${nodeName} has no coordinator at depth ${depth} ${context}."
-        }
-    }
-
-    @Override
-    void processMessage(Message msg) {
-        if (msg instanceof DatagramNtf && msg.data != null) {
-            if (msg.from == Address.BROADCAST) {
-                handleBeacon(new String(msg.data))
-            } else {
-                updateBattery(RX_BATTERY_COST)
-                log.info "Data Node ${nodeName} received data: ${new String(msg.data)}"
-            }
-        } else if (msg instanceof RefuseRsp) {
-            log.warning "RefuseRsp received for DataNode - Reason: ${msg.getReason() ?: 'No reason specified'}"
-            // Optionally implement additional handling here
-        }
-    }
-
-    private void handleBeacon(String dataString) {
-        try {
-            def data = parseBeaconData(dataString)
-            if (!data) return
-            String neighborName = data.nodeName
-            int neighborHopCount = data.hopCount
-            double neighborDepth = data.depth
-
-            if (neighborHopCount + 1 < hopCount) {
-                hopCount = neighborHopCount + 1
-                log.info "Data Node ${nodeName} updated hop count to ${hopCount} after receiving beacon from ${neighborName}"
-            }
-        } catch (Exception e) {
-            log.warning "Data Node ${nodeName} failed to parse beacon data."
-        }
-    }
-
-    private Map parseBeaconData(String dataString) {
-        try {
-            def data = [:]
-            dataString = dataString.replaceAll(/[\{\}]/, '')  // Remove braces
-            dataString.split(', ').each { pair ->
-                def (key, value) = pair.split(':')
-                data[key.trim()] = value.trim().isDouble() ? value.trim().toDouble() : (value.trim().isInteger() ? value.trim().toInteger() : value.trim())
-            }
-            return data
-        } catch (Exception e) {
-            log.warning "Data Node ${nodeName} failed to parse beacon data string: ${dataString}"
-            return null
-        }
-    }
+  List<Parameter> getParameterList() {
+    allOf(DataParams);
+  }
 }
-
-agent.add(new DataNode())

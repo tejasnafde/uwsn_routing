@@ -1,17 +1,17 @@
-1730443855319|INFO|org.arl.unet.UnetBoot@1:doInvoke|fjage Build: fjage-1.9.1/37c49259/5-09-2021_13:26:12
-1730443855377|INFO|org.arl.unet.UnetBoot@1:doInvoke|UnetBoot: [classes/TestbenchAgent.groovy]
-1730443855470|INFO|org.arl.fjage.remote.EnumTypeAdapter@1:<clinit>|Groovy detected, using GroovyClassLoader
-1730443855505|INFO|org.arl.fjage.remote.MessageAdapterFactory@1:<clinit>|Groovy detected, using GroovyClassLoader
-1730443856619|INFO|utilities.DepthUtility@1:doInvoke|Parsed node name 'T1D0I1' into type=sink, depth=0, index=1, isCoordinator=true, address=65
-1730443856663|WARNING|org.arl.fjage.shell.GroovyScriptEngine@1:error|Groovy execution failed
+1731884045767|INFO|org.arl.unet.UnetBoot@1:doInvoke|fjage Build: fjage-1.9.1/37c49259/5-09-2021_13:26:12
+1731884045829|INFO|org.arl.unet.UnetBoot@1:doInvoke|UnetBoot: [classes/TestbenchAgent.groovy]
+1731884045919|INFO|org.arl.fjage.remote.EnumTypeAdapter@1:<clinit>|Groovy detected, using GroovyClassLoader
+1731884045950|INFO|org.arl.fjage.remote.MessageAdapterFactory@1:<clinit>|Groovy detected, using GroovyClassLoader
+1731884046960|WARNING|org.arl.fjage.shell.GroovyScriptEngine@1:error|Groovy execution failed
 
-Unknown command or property: nodes
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+/home/tejas/uwsn_routing/classes/TestbenchAgent.groovy: 75: unexpected token: updateNodeLocations @ line 75, column 5.
+       updateNodeLocations.call()
+       ^
+
+1 error
+
 Stack trace: ...
-   org.arl.fjage.shell.BaseGroovyScript.propertyMissing(BaseGroovyScript.groovy:668) ...
-   TestbenchAgent$_run_closure1.doCall(TestbenchAgent.groovy:41)
-   TestbenchAgent$_run_closure1.doCall(TestbenchAgent.groovy) ...
-   org.arl.unet.sim.initrc$_run_closure11.doCall(initrc.groovy:418) ...
-   TestbenchAgent.run(TestbenchAgent.groovy:35) ...
    org.arl.fjage.shell.GroovyScriptEngine.exec(GroovyScriptEngine.java:215) ...
    org.arl.unet.boot.sim.exec(sim.groovy:41)
    org.arl.unet.boot.sim$exec$0.call(Unknown Source) ...
